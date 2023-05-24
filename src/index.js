@@ -6,16 +6,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { UserProvider } from "./context/user.context";
+import { ProductsProvider } from "./context/products.context";
+import { CartProvider } from "./context/cart.context";
 
 const container = document.getElementById("root");
 
 const root = createRoot(container);
 
+// GENERAL WRAPPING RULE, DOES IT NEED ACCESS TO THE DATA WITHIN...
+// EX: BrowserRouter does NOT need access to the products.
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
